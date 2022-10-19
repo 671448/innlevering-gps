@@ -44,14 +44,32 @@ public class ShowSpeed extends EasyGraphics {
 	public void showSpeedProfile(int ybase, int N) {
 
 		// get segments speeds from the GPS computer object		
-		double[] speeds = gpscomputer.speeds();
-
-		int x = MARGIN,y;
-
-		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+	double[] speeds = gpscomputer.speeds();
+	double snitt = 0;
+	int linje = 0;
+	for (int i = 0; i<speeds.length - 1; i++) {
+ linje = linje + (int)speeds[i];
+ }
 	
-		// TODO - SLUTT
+		linje = linje/speeds.length;
+	
+
+	int x = MARGIN,y;
+	
+	
+	
+	int end = 0;
+int speed = 0;
+		for(int i = 0; i < gpspoints.length - 1; i++) {
+	           
+	        speed = (int) speeds[i];
+	        	
+	        setColor(0,0,255);
+	        drawLine(x+i*2, ybase, x+i*2,  ybase-speed );
+	          end +=x+i*2;  
+	        }
+		setColor(0,255,4);
+		drawLine(x,ybase -linje,end, ybase- linje);
 	}
 }

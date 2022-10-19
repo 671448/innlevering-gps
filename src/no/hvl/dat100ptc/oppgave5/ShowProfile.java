@@ -1,15 +1,13 @@
 package no.hvl.dat100ptc.oppgave5;
 
-import easygraphics.EasyGraphics;
+import javax.swing.JOptionPane;
 import no.hvl.dat100ptc.TODO;
+import easygraphics.EasyGraphics;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
+import no.hvl.dat100ptc.oppgave4.GPSComputer;
 import no.hvl.dat100ptc.oppgave2.GPSData;
 import no.hvl.dat100ptc.oppgave2.GPSDataConverter;
 import no.hvl.dat100ptc.oppgave2.GPSDataFileReader;
-import no.hvl.dat100ptc.oppgave4.GPSComputer;
-
-import javax.swing.JOptionPane;
-
 public class ShowProfile extends EasyGraphics {
 
 	private static final int MARGIN = 50;  // margin on the sides 
@@ -44,14 +42,18 @@ public class ShowProfile extends EasyGraphics {
 	public void showHeightProfile(int ybase) {
 
 		// ybase indicates the position on the y-axis where the columns should start
-	
+	setColor(0,0,255);
 		int x = MARGIN,y;
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-	
-		// TODO - SLUTT
+int elevation = 0;
+        for(int i = 0; i < gpspoints.length; i++) {
+           
+        elevation = (int) gpspoints[i].getElevation();
+        	if(elevation<0) {
+        elevation = 0;
+        	}
+        drawLine(x+i*3, ybase, x+i*3,  ybase-elevation );
+            
+        }
 	}
 
 }
